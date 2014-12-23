@@ -17,8 +17,10 @@ namespace PlaylistSharpTest
                     {
                         new PlaylistTrack { Title = "title1", Location = "location1" },
                         new PlaylistTrack { Title = "title2", Location = "location2" },
-                        new PlaylistTrack { Title = "title3", Location = "location3" },
-                        new PlaylistTrack { Title = "title4", Location = "location4" }
+                        new PlaylistTrack { Title = null, Location = "location2" },
+                        new PlaylistTrack { Title = "title2", Location = null },
+                        new PlaylistTrack { Title = "title3", Location = String.Empty },
+                        new PlaylistTrack { Title = String.Empty, Location = "location4" }
                     },
                 //Type = PlaylistType.XPSF
                 Type = PlaylistType.M3U
