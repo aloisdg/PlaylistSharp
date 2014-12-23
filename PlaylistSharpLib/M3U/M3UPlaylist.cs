@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
 
 namespace PlaylistSharpLib.M3U
 {
@@ -72,7 +68,7 @@ namespace PlaylistSharpLib.M3U
         #endregion
 
         #region converter
-        private static IEnumerable<PlaylistSharpLib.PlaylistTrack> ToBase(IEnumerable<PlaylistSharpLib.M3U.PlaylistTrack> xpsfList)
+        private static IEnumerable<PlaylistSharpLib.PlaylistTrack> ToBase(IEnumerable<PlaylistTrack> xpsfList)
         {
             return from track in xpsfList
                    select new PlaylistSharpLib.PlaylistTrack
@@ -85,7 +81,7 @@ namespace PlaylistSharpLib.M3U
         private static IEnumerable<PlaylistTrack> FromBase(IEnumerable<PlaylistSharpLib.PlaylistTrack> playlist)
         {
             return from track in playlist
-                   select new PlaylistSharpLib.M3U.PlaylistTrack
+                   select new PlaylistTrack
                    {
                        Information = new Information
                        {

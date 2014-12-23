@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PlaylistSharpLib.M3U
+﻿namespace PlaylistSharpLib.M3U
 {
     public class M3U
     {
