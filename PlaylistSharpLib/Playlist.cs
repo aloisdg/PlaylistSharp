@@ -45,11 +45,12 @@ namespace PlaylistSharpLib
         {
             if (Type == PlaylistType.UNKNOW)
                 return String.Empty;
+            if (!Tracks.Any())
+                throw new Exception("No tracks found.");
             if (playlistType != PlaylistType.XPSF &&
                 playlistType != PlaylistType.M3U)
                 throw new NotImplementedException("Format not implemented yet.");
-            if (!Tracks.Any())
-                throw new Exception("No tracks found.");
+
 
             var playlist = playlistType == PlaylistType.XPSF
              ? (IPlaylist)new XpsfPlaylist(Tracks)
