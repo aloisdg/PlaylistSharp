@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,30 @@ namespace PlaylistSharpTest
     {
         static void Main(string[] args)
         {
-            var playlist = new Playlist
+            try
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    var playlist = BuildPlaylist(i%2 == 0);
+
+                    string so = playlist.ToString(playlist.Type);
+                    Debug.WriteLine(so);
+
+                    var pList = new Playlist(playlist.Type, so);
+                    //Console.WriteLine(pList.ToString());
+                    Debug.WriteLine(pList.Tracks.ToList().Count);
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            Console.ReadLine();
+        }
+
+        static Playlist BuildPlaylist(bool b)
+        {
+            return new Playlist
             {
                 Tracks = new List<PlaylistTrack>
                     {
@@ -22,24 +46,8 @@ namespace PlaylistSharpTest
                         new PlaylistTrack { Title = "title3", Location = String.Empty },
                         new PlaylistTrack { Title = String.Empty, Location = "location4" }
                     },
-                //Type = PlaylistType.XPSF
-                Type = PlaylistType.M3U
+                Type =  b ? PlaylistType.XPSF : PlaylistType.M3U
             };
-
-            try
-            {
-                string so = playlist.ToString(playlist.Type);
-                Console.WriteLine(so);
-
-                var i = new Playlist(playlist.Type, so);
-                Console.WriteLine(i.Tracks.ToList().Count);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-
-            Console.ReadLine();
         }
     }
 }

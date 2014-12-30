@@ -12,10 +12,13 @@ namespace PlaylistSharpLib
         public IEnumerable<PlaylistTrack> Tracks { get; set; }
         public PlaylistType Type { get; set; }
 
+        public string RawData { get; set; }
+
         public Playlist()
         {
             Tracks = new List<PlaylistTrack>();
             Type = PlaylistType.UNKNOW;
+            RawData = String.Empty;
         }
 
         public Playlist(PlaylistType playlistType, string data)
@@ -24,14 +27,18 @@ namespace PlaylistSharpLib
                 playlistType != PlaylistType.M3U)
                 throw new NotImplementedException("Format not implemented yet.");
 
-            //var playlist = playlistType == PlaylistType.XPSF
-            //    ? (IPlaylist)new XpsfPlaylist(data)
-            //    : (IPlaylist)new M3UPlaylist(data);
-
-            var playlist = new M3UPlaylist(data);
+            var playlist = playlistType == PlaylistType.XPSF
+                ? (IPlaylist)new XpsfPlaylist(data)
+                : (IPlaylist)new M3UPlaylist(data);
 
             Tracks = playlist.Tracks;
             Type = playlistType;
+            RawData = data;
+        }
+
+        public override string ToString()
+        {
+            return this.RawData;
         }
 
         public string ToString(PlaylistType playlistType)
@@ -42,12 +49,14 @@ namespace PlaylistSharpLib
                 playlistType != PlaylistType.M3U)
                 throw new NotImplementedException("Format not implemented yet.");
             if (!Tracks.Any())
-                throw new Exception();
+                throw new Exception("No tracks found.");
 
             var playlist = playlistType == PlaylistType.XPSF
              ? (IPlaylist)new XpsfPlaylist(Tracks)
              : (IPlaylist)new M3UPlaylist(Tracks);
             return playlist.ToString();
+
+            //return RawData;
         }
     }
 }
