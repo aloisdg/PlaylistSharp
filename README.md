@@ -8,3 +8,4 @@ ToDo
 * Clean Playlist
 * Add a dictionay to Playlist
 * Merge playlist frombase / tobase
+* Create a IPlaylistTrack
