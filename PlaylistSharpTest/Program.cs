@@ -47,7 +47,7 @@ namespace PlaylistSharpTest
                         new PlaylistTrack { Title = String.Empty, Location = "location4" }
                     },
                 Type =  b ? PlaylistType.XPSF : PlaylistType.M3U
-            };
+            }; 
         }
     }
 }

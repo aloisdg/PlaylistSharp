@@ -64,7 +64,7 @@ namespace PlaylistSharpLib.M3U
                 TrackList = tracks.ToArray()
             };
         }
-        
+
         #endregion
 
         #region converter
@@ -97,12 +97,18 @@ namespace PlaylistSharpLib.M3U
 
         public M3UPlaylist(string m3u)
         {
-            Tracks = ToBase(BuildM3U(m3u).TrackList);
+            var toto = from item in BuildM3U(m3u).TrackList
+                       let isEmpty = String.IsNullOrWhiteSpace(item.Location)
+                       where !isEmpty
+                       select item;
+            Tracks = ToBase(toto);
         }
 
         public M3UPlaylist(IEnumerable<PlaylistSharpLib.PlaylistTrack> tracks)
         {
-            Tracks = tracks;
+            Tracks = from item in tracks
+                     where !String.IsNullOrWhiteSpace(item.Location)
+                     select item;
         }
 
         #endregion
@@ -110,7 +116,7 @@ namespace PlaylistSharpLib.M3U
         public override string ToString()
         {
             var s = new StringBuilder(String.Format("#EXTM3U{0}{0}",
-                Environment.NewLine));  
+                Environment.NewLine));
             var tracks = FromBase(Tracks);
             foreach (var playlistTrack in tracks)
                 s.AppendFormat("#EXTINF:{0}, {1}{2}{3}{2}{2}",
