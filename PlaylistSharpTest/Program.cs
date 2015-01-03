@@ -19,11 +19,10 @@ namespace PlaylistSharpTest
                     var playlist = BuildPlaylist(i%2 == 0);
 
                     string so = playlist.ToString(playlist.Type);
-                    Debug.WriteLine(so);
+                    Console.WriteLine(so);
 
                     var pList = new Playlist(playlist.Type, so);
-                    //Console.WriteLine(pList.ToString());
-                    Debug.WriteLine(pList.Tracks.ToList().Count);
+                    Console.WriteLine(pList.Tracks.ToList().Count);
                 }
             }
             catch (Exception exception)
