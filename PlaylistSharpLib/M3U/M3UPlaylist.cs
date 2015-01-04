@@ -119,7 +119,7 @@ namespace PlaylistSharpLib.M3U
                 Environment.NewLine));
             var tracks = FromBase(Tracks);
             foreach (var playlistTrack in tracks)
-                s.AppendFormat("#EXTINF:{0}, {1}{2}{3}{2}",
+                s.AppendFormat("#EXTINF:{0},{1}{2}{3}{2}",
                     playlistTrack.Information.Duration,
                     playlistTrack.Information.Title,
                     Environment.NewLine,
