@@ -14,7 +14,7 @@ namespace PlaylistSharpTest
         {
             try
             {
-                for (int i = 0; i < 2; i++)
+                for (var i = 0; i < 2; i++)
                 {
                     var playlist = BuildPlaylist(i%2 == 0);
 
