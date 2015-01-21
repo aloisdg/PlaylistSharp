@@ -11,7 +11,7 @@
         public Information Information { get; set; }
         public string Location { get; set; }
     }
-     
+
     public class Information
     {
         public string Duration { get; set; }

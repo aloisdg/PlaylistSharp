@@ -6,10 +6,7 @@ namespace PlaylistSharpLib.XPSF
     // http://www.xspf.org/specs/
 
     [XmlType(AnonymousType = true, Namespace = "http://xspf.org/ns/0/")]
-    [XmlRoot(
-        Namespace = "http://xspf.org/ns/0/",
-        ElementName = "playlist",
-        IsNullable = false)]
+    [XmlRoot(Namespace = "http://xspf.org/ns/0/", ElementName = "playlist", IsNullable = false)]
     public class Xpsf
     {
         [XmlArrayItem("track", IsNullable = false)]
@@ -20,10 +17,7 @@ namespace PlaylistSharpLib.XPSF
         public int Version { get; set; }
     }
 
-    [XmlType(
-        AnonymousType = true,
-        Namespace = "http://xspf.org/ns/0/",
-        TypeName = "playlistTrack")]
+    [XmlType(AnonymousType = true, Namespace = "http://xspf.org/ns/0/", TypeName = "playlistTrack")]
     public class PlaylistTrack
     {
         [XmlElement("title")]

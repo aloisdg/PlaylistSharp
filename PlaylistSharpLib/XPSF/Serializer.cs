@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace PlaylistSharpLib.XPSF
@@ -19,10 +20,17 @@ namespace PlaylistSharpLib.XPSF
 
         public static T DeserializeFromXml<T>(string toDeserialize)
         {
-            var deserializer = new XmlSerializer(typeof(T));
-            using (var textReader = new StringReader(toDeserialize))
+            try
             {
-                return (T)deserializer.Deserialize(textReader);
+                var deserializer = new XmlSerializer(typeof (T));
+                using (var textReader = new StringReader(toDeserialize))
+                {
+                    return (T) deserializer.Deserialize(textReader);
+                }
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                throw  new Exception("PlaylistSharp cannot deserialize your xml. Maybe you want to check it first.", invalidOperationException);
             }
         }
     }
